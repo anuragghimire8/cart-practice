@@ -1,0 +1,10 @@
+.container{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.container:hover{
+    cursor: pointer;
+
+}
