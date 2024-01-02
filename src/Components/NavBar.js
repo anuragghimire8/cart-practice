@@ -13,7 +13,8 @@ const NavBar = () => {
           console.log("home is clicked");
           break;
           case "Product":
-            navigate("/product is Clicked")
+            navigate("/product")
+            console.log("Product Button is Clicked")
             break;
         case "About us":
             navigate("/about-us")

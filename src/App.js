@@ -8,6 +8,7 @@ import "./App.css"
 import PageNotFound from './Components/Container/PageNotFound';
 import refLearning from './Components/refLearning/refLearning';
 import RefLearning from './Components/refLearning/refLearning';
+import Form from './Components/Form/Form';
 
 
 const App = () => {
@@ -84,6 +85,7 @@ const App = () => {
         <Route path="/product" element={<Products data={originalProductList} />} />
         <Route path="product/1" element={<ProductDetailsPage />} />
         <Route path="/ref" element={<RefLearning />}/>
+        <Route path="/form" element={<Form/>}/>
       </Route>
     ) : (
       <>
