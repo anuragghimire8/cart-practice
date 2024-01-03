@@ -12,23 +12,45 @@ const Form = () => {
     e.preventDefault();
     if (list.trim() !== "") {
       setList('');
-      setEntered([...entered, { list }]);
+      setEntered([...entered, { title: list, completed: false }]);
     }
   }
 
   const deleteHandler = (id) => {
-    setEntered((EnteredToDelete) => EnteredToDelete.filter((items, index) => index !== id));
-    console.log(entered)
-   
+    setEntered((EnteredToDelete) => EnteredToDelete.filter((item, index) => index !== id));
   }
- 
+
+  const Completion = (id) => {
+    setEntered((enteredToUpdate) => {
+      const updatedList = enteredToUpdate.map((item, index) => {
+        if (index === id) {
+          return { ...item, completed: !item.completed };
+        }
+        return item;
+      });
+      return updatedList;
+    });
+  }
 
   let enteredList = <h1>No List Available</h1>;
   if (entered.length > 0) {
     enteredList = entered.map((item, id) => (
-      <ul key={id} style={{ display: "flex", justifyContent: "space-between", backgroundColor: "black", height: "50px" }}>
-        <li style={{ color: "white" }}>{item.list}</li>
-        <button style={{ color: "white", backgroundColor: "red", cursor: "pointer" }} onClick={() => { deleteHandler(id) }}>Delete</button>
+      <ul key={id} style={{ display: "flex", justifyContent: "space-between",alignItems:"center", backgroundColor: "black", height: "50px" }}>
+      <div style={{display:"flex",justifyContent: "space-between",alignItems:"center"}}>
+        <li style={{ color:"white"  }}>
+          {item.title} 
+         
+        </li>
+         {item.completed ? <p style={{color:"white",marginLeft: "10px"}}>  == Completed</p>
+        : ""}
+        </div>
+     
+        <div>
+       
+          <button style={{ color: "white", backgroundColor: "red", cursor: "pointer" }} onClick={() => deleteHandler(id)}>Delete</button>
+          <button style={{ color: "white", backgroundColor: "blue", cursor: "pointer" }} onClick={() => Completion(id)}>
+          {item.completed ? "Uncompleted" : "Completed"}</button>
+        </div>
       </ul>
     ));
   }
